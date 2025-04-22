@@ -1,0 +1,72 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 50px;
+  background-color: #1e293b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Logo */
+.navbar-logo img {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo img:hover {
+  transform: scale(1.1);
+}
+
+/* Navbar Menu */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.navbar-menu li {
+  font-size: 18px;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: #f3f4f6;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+  background-color: #60a5fa;
+  color: #ffffff;
+}
+
+.active-link {
+  background: linear-gradient(90deg, #60a5fa, #9333ea);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Action Button */
+.navbar-action .action-button {
+  background: linear-gradient(90deg, #60a5fa, #9333ea);
+  color: #ffffff;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-action .action-button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+}

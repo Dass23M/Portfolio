@@ -1,0 +1,130 @@
+.footer {
+    background-color: #111; /* Dark background */
+    color: #e0e0e0; /* Soft light gray text */
+    padding: 4rem 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    border-top: 5px solid #ffc107; /* Warm yellow divider at the top */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-about,
+.footer-links,
+.footer-socials {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.footer-about h4,
+.footer-links h4,
+.footer-socials h4 {
+    color: #ffc107; /* Warm yellow for headings */
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.footer-about p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.footer-links ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links ul li a {
+    color: #60a5fa; /* Sky blue for links */
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #ffc107; /* Warm yellow on hover */
+    transform: translateX(5px);
+}
+
+.footer-socials .social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-socials .social-icons a {
+    color: #e0e0e0;
+    font-size: 2rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-socials .social-icons a:hover {
+    color: #ffc107;
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #2b2d42; /* Dark gray divider */
+    padding-top: 1.5rem;
+}
+
+.footer-bottom p {
+    color: #a1a1a1; /* Lighter gray for footer text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-about,
+    .footer-links,
+    .footer-socials {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .footer-links ul {
+        padding-left: 0;
+    }
+
+    .footer-socials .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-about h4,
+    .footer-links h4,
+    .footer-socials h4 {
+        font-size: 1.1rem;
+    }
+
+    .footer-about p {
+        font-size: 0.9rem;
+    }
+
+    .footer-links ul li a {
+        font-size: 0.9rem;
+    }
+
+    .footer-socials .social-icons a {
+        font-size: 1.8rem;
+    }
+}

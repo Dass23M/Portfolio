@@ -1,0 +1,242 @@
+.Contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin: 80px 170px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.Contact.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-title {
+    position: relative;
+}
+
+.contact-title h1 {
+    font-size: 50px;
+    font-weight: 500;
+    animation: fadeInDown 1s ease-out;
+    color: #1E90FF; /* Updated color */
+}
+
+.contact-section {
+    display: flex;
+    gap: 150px;
+}
+
+/* Left Section Styles */
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.contact-left.slide-in-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-left h1 {
+    font-size: 65px;
+    font-weight: 600;
+    background: linear-gradient(270deg, #1E90FF 60%, #4682B4 90%); /* Gradient from blue */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.contact-left p {
+    max-width: 550px;
+    color: #B0C4DE; /* Lighter blue tone */
+    font-size: 18px;
+    line-height: 35px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    gap: 30px;
+    color: #B0C4DE; /* Lighter blue tone */
+}
+
+.contact-detail {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.icon-container {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #1E90FF, #4682B4); /* Gradient of blue */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-detail img {
+    width: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px);
+}
+
+.hover-effect:hover .icon-container {
+    transform: scale(1.1);
+}
+
+/* Right Section Styles */
+.contact-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.contact-right.slide-in-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.contact-right label {
+    color: #eee6f1;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.input-animate {
+    border: none;
+    width: 500px;
+    height: 78px;
+    padding-left: 20px;
+    border-radius: 4px;
+    background: #2F4F4F; /* Darker shade of blue-green */
+    color: #A9A9A9;
+    font-size: 20px;
+    font-family: Outfit;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.input-animate:focus {
+    border-color: #1E90FF;
+    background: #3A5F8C; /* Slightly lighter blue shade */
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.2);
+}
+
+textarea.input-animate {
+    height: auto;
+    padding: 25px;
+}
+
+.contact-submit {
+    border: none;
+    color: #eee6f1;
+    border-radius: 50px;
+    background: linear-gradient(#1E90FF -5.09%, #4682B4 100%); /* Gradient of blue */
+    padding: 15px 30px;
+    margin-bottom: 80px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+}
+
+.pulse-effect {
+    animation: pulse 2s infinite;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .Contact {
+        margin: 80px 50px;
+    }
+
+    .contact-section {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .contact-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-right {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .input-animate {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .Contact {
+        margin: 40px 20px;
+    }
+
+    .contact-title h1 {
+        font-size: 40px;
+    }
+
+    .contact-left h1 {
+        font-size: 45px;
+    }
+}
