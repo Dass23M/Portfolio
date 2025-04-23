@@ -33,7 +33,7 @@ const MyProjects = () => {
             </div>
             <div className="project-overlay">
               <h2>{work.w_name}</h2>
-              <p>Short description about the project.</p>
+              <p>Short description about the project</p>
               <button>View Project</button>
             </div>
           </div>

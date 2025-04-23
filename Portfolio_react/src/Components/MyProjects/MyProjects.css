@@ -110,14 +110,16 @@
   }
   
   .project-overlay h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
+    margin-right: 30px;
   }
   
   .project-overlay p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.5;
     margin-bottom: 15px;
+    margin-right: 36px;
   }
   
   .project-overlay button {
@@ -129,6 +131,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
+    margin-right: 30px;
   }
   
   .project-overlay button:hover {
