@@ -1,0 +1,67 @@
+.moving-bar-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #1F2937; /* Dark background for contrast */
+   
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .moving-bar {
+    display: inline-flex;
+    white-space: nowrap;
+    background-color: #FFC107; /* Initial premium gold color */
+    border-radius: 40px;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    height: 3rem;
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    position: relative;
+  }
+  
+  .skill-item:not(:last-child)::after {
+    content: "•";
+    position: absolute;
+    right: 0;
+    color: #1F2937;
+    opacity: 0.5;
+  }
+  
+  .skill-item span {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1F2937; /* Dark text for contrast */
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .skill-item span:hover {
+    transform: translateY(-2px);
+    color: #FFFFFF;
+  }
+  
+  /* Add responsive adjustments */
+  @media (max-width: 768px) {
+    .moving-bar-container {
+      padding: 1rem 0;
+    }
+    
+    .moving-bar {
+      height: 2.5rem;
+    }
+    
+    .skill-item {
+      padding: 0 1rem;
+    }
+    
+    .skill-item span {
+      font-size: 0.95rem;
+    }
+  }
