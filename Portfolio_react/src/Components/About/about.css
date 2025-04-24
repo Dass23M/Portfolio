@@ -1,4 +1,4 @@
-/* about.css */
+/* About Section */
 .about-section {
   position: relative;
   display: flex;
@@ -6,13 +6,15 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #b415ff, #60a5fa);
+  background: linear-gradient(135deg, #0f2027, #2c3e50, #60a5fa);
   color: white;
   text-align: center;
   font-family: "Poppins", sans-serif;
   overflow: hidden;
+  padding: 2rem;
 }
 
+/* Background Dots */
 .background-dots {
   position: absolute;
   top: 0;
@@ -20,125 +22,228 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  overflow: hidden;
 }
 
+/* Dot */
 .dot {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: rgba(255, 255, 255, 0.15);
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  animation: moveDot 15s infinite ease-in-out;
 }
 
-@keyframes moveDot {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translate(30vw, 50vh);
-    opacity: 0.4;
-  }
-  100% {
-    transform: translate(0, 0);
-    opacity: 0.7;
-  }
-}
-
+/* Content Container */
 .about-icons-container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  width: 100%;
 }
 
+/* Title */
 .about-title {
-  font-size: 4rem;
-  font-weight: bold;
+  font-size: 3.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
   color: #ffc107;
   text-transform: uppercase;
-  animation: fadeIn 1.5s ease-in-out;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Description */
 .about-description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #e0e0e0;
   margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Tech Icons */
 .tech-icons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  padding: 0 1rem;
 }
 
+/* Tech Item */
 .tech-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
 .tech-item svg {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: white;
+  transition: color 0.3s ease;
 }
 
 .tech-item span {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: white;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
-.tech-item:hover {
-  transform: scale(1.2);
+.tech-item:hover,
+.tech-item:active {
+  transform: scale(1.15);
+}
+
+.tech-item:hover svg,
+.tech-item:active svg {
   color: #ffc107;
 }
 
+/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: white;
   animation: fadeIn 2s ease-out;
 }
 
 .mouse-scroll {
-  width: 25px;
-  height: 40px;
+  width: 20px;
+  height: 35px;
   border: 2px solid white;
-  border-radius: 15px;
+  border-radius: 12px;
   position: relative;
-  animation: scrollAnim 1.5s infinite;
 }
 
 .mouse-scroll::before {
   content: "";
   position: absolute;
-  top: 10px;
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: white;
   border-radius: 50%;
+  animation: scrollAnim 1.5s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scrollAnim {
   0% {
     transform: translateY(0);
+    opacity: 1;
   }
   50% {
-    transform: translateY(15px);
+    transform: translateY(10px);
+    opacity: 0.5;
   }
   100% {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 1.5rem;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-description {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .tech-icons {
+    gap: 1rem;
+  }
+
+  .tech-item svg {
+    font-size: 2rem;
+  }
+
+  .tech-item span {
+    font-size: 0.8rem;
+  }
+
+  .scroll-indicator {
+    bottom: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .mouse-scroll {
+    width: 18px;
+    height: 30px;
+  }
+
+  .mouse-scroll::before {
+    width: 5px;
+    height: 5px;
+    top: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 1rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-description {
+    font-size: 0.9rem;
+  }
+
+  .tech-icons {
+    gap: 0.8rem;
+  }
+
+  .tech-item svg {
+    font-size: 1.8rem;
+  }
+
+  .tech-item span {
+    font-size: 0.7rem;
+  }
+
+  .scroll-indicator {
+    font-size: 0.7rem;
+  }
+
+  .mouse-scroll {
+    width: 16px;
+    height: 28px;
+  }
+
+  .mouse-scroll::before {
+    width: 4px;
+    height: 4px;
+    top: 6px;
   }
 }
