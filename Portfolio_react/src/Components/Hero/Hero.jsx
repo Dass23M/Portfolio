@@ -21,27 +21,27 @@ const Hero = () => {
     // Content container animation
     gsap.fromTo(
       contentRef.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: isMobile ? 0.8 : 1.2, ease: 'power3.out' }
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: isMobile ? 0.7 : 1, ease: 'power3.out' }
     );
 
     // Individual element animations
     gsap.fromTo(
       imageRef.current,
       { opacity: 0, scale: 0.5 },
-      { opacity: 1, scale: 1, duration: isMobile ? 1 : 1.5, ease: 'bounce.out', delay: 0.2 }
+      { opacity: 1, scale: 1, duration: isMobile ? 0.8 : 1.2, ease: 'bounce.out', delay: 0.1 }
     );
 
     gsap.fromTo(
       titleRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: isMobile ? 0.8 : 1, ease: 'power3.out', delay: 0.4 }
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: isMobile ? 0.7 : 0.9, ease: 'power3.out', delay: 0.3 }
     );
 
     gsap.fromTo(
       descriptionRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: isMobile ? 0.8 : 1, ease: 'power3.out', delay: 0.6 }
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: isMobile ? 0.7 : 0.9, ease: 'power3.out', delay: 0.5 }
     );
 
     gsap.fromTo(
@@ -50,10 +50,10 @@ const Hero = () => {
       {
         opacity: 1,
         scale: 1,
-        duration: isMobile ? 0.6 : 0.8,
-        stagger: 0.2,
+        duration: isMobile ? 0.5 : 0.7,
+        stagger: 0.15,
         ease: 'power2.out',
-        delay: 0.8,
+        delay: 0.7,
       }
     );
 
@@ -77,7 +77,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div id="Hero" className="hero" ref={heroRef} aria-label="Hero Section">
+    <div id="Hero" className="hero" ref={heroRef} aria-labelledby="hero-title">
       <div className="hero-content" ref={contentRef}>
         <img
           src={profile}
@@ -85,7 +85,7 @@ const Hero = () => {
           className="hero-image"
           ref={imageRef}
         />
-        <h1 className="hero-title" ref={titleRef}>
+        <h1 id="hero-title" className="hero-title" ref={titleRef}>
           <span>Hello, I'm Dasun Methmal</span>
           <br />
           A Full-Stack Developer from Sri Lanka
