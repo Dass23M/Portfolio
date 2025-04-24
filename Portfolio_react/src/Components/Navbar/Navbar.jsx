@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
-  const [menu, setMenu] = useState('Hero'); // Fixed typo here
+  const [menu, setMenu] = useState('Hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navbarRef = useRef(null);
   const logoRef = useRef(null);
@@ -26,7 +26,6 @@ const Navbar = () => {
     setMobileMenuOpen(false);
   }, []);
 
-  // Rest of your code remains unchanged
   useEffect(() => {
     // Prevent body scrolling when mobile menu is open
     if (mobileMenuOpen) {
@@ -87,7 +86,7 @@ const Navbar = () => {
   return (
     <nav className="navbar" ref={navbarRef} aria-label="Main navigation">
       <div className="navbar-logo" ref={logoRef}>
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt="Methmal Logo" />
       </div>
 
       <div

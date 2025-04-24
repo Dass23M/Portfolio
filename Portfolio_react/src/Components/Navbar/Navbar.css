@@ -16,6 +16,10 @@
 }
 
 /* Logo */
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+}
 .navbar-logo img {
   height: 50px;
   transition: transform 0.3s ease;
@@ -82,8 +86,21 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .navbar {
+    justify-content: center; /* Center logo */
+    position: relative;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .navbar-logo {
+    position: relative;
+    left: 10px; /* Slight shift to the right */
+  }
+
   .menu-icon {
     display: block;
+    position: absolute;
+    right: 1.5rem; /* Ensure menu icon stays on the right */
   }
 
   .navbar-menu {
@@ -129,7 +146,7 @@
 
 @media (max-width: 480px) {
   .navbar {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1rem;
   }
 
   .navbar-logo img {
@@ -138,9 +155,14 @@
 
   .menu-icon {
     font-size: 1.5rem;
+    right: 1rem;
   }
 
   .navbar-menu li a {
     font-size: 1.1rem;
+  }
+
+  .navbar-logo {
+    left: 8px; /* Slightly smaller shift for smaller screens */
   }
 }
