@@ -8,6 +8,7 @@ import Contact from './Components/Contact/Contact';
 import Footer from './Components/Footer/Footer';
 import mywork_data from './assets/mywork_data';
 import AboutMy from './Components/AboutMy/AboutMy';
+import MovingBar from './MovingBar/MovingBar';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <AboutMy/>
      
       <About />
+      <MovingBar/>
    
       <NewAbout />
      
