@@ -9,35 +9,52 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const contentRef = useRef(null);
   const imageRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const actionRef = useRef(null);
 
   useEffect(() => {
-    // Initial animations on page load
+    const isMobile = window.innerWidth <= 768;
+
+    // Content container animation
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: isMobile ? 0.8 : 1.2, ease: 'power3.out' }
+    );
+
+    // Individual element animations
     gsap.fromTo(
       imageRef.current,
       { opacity: 0, scale: 0.5 },
-      { opacity: 1, scale: 1, duration: 1.5, ease: 'bounce.out' }
+      { opacity: 1, scale: 1, duration: isMobile ? 1 : 1.5, ease: 'bounce.out', delay: 0.2 }
     );
 
     gsap.fromTo(
       titleRef.current,
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3 }
+      { opacity: 1, y: 0, duration: isMobile ? 0.8 : 1, ease: 'power3.out', delay: 0.4 }
     );
 
     gsap.fromTo(
       descriptionRef.current,
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.5 }
+      { opacity: 1, y: 0, duration: isMobile ? 0.8 : 1, ease: 'power3.out', delay: 0.6 }
     );
 
     gsap.fromTo(
       actionRef.current.children,
       { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.7 }
+      {
+        opacity: 1,
+        scale: 1,
+        duration: isMobile ? 0.6 : 0.8,
+        stagger: 0.2,
+        ease: 'power2.out',
+        delay: 0.8,
+      }
     );
 
     // ScrollTrigger for background gradient shift
@@ -52,22 +69,49 @@ const Hero = () => {
         scrub: true,
       },
     });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
   return (
-    <div id="Hero" className="hero" ref={heroRef}>
-      <div className="hero-content">
-        <img src={profile} alt="Profile" className="hero-image" ref={imageRef} />
+    <div id="Hero" className="hero" ref={heroRef} aria-label="Hero Section">
+      <div className="hero-content" ref={contentRef}>
+        <img
+          src={profile}
+          alt="Dasun Methmal Profile"
+          className="hero-image"
+          ref={imageRef}
+        />
         <h1 className="hero-title" ref={titleRef}>
-          <span>Hello, I'm Dasun Methmal</span> <br /> A Full-Stack Developer from Sri Lanka
+          <span>Hello, I'm Dasun Methmal</span>
+          <br />
+          A Full-Stack Developer from Sri Lanka
         </h1>
         <p className="hero-description" ref={descriptionRef}>
-          Building seamless, scalable, and user-centric digital experiences through innovation and technology.
--
+          Building seamless, scalable, and user-centric digital experiences through
+          innovation and technology.
         </p>
         <div className="hero-action" ref={actionRef}>
-          <div className="hero-connect">Connect with me</div>
-          <div className="hero-resume">Download Resume</div>
+          <a
+            href="#Contact"
+            className="hero-connect"
+            role="button"
+            aria-label="Connect with me"
+          >
+            Connect with me
+          </a>
+          <a
+            href="/resume.pdf"
+            className="hero-resume"
+            role="button"
+            aria-label="Download Resume"
+            download
+          >
+            Download Resume
+          </a>
         </div>
       </div>
     </div>
