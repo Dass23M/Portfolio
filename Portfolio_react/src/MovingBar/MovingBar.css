@@ -10,7 +10,7 @@
   .moving-bar {
     display: inline-flex;
     white-space: nowrap;
-    background-color: #FFC107; /* Initial premium gold color */
+    background-color: #fbf24d; /* Initial premium gold color */
     border-radius: 40px;
     padding: 0.5rem 1rem;
     align-items: center;
