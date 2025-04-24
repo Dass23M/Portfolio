@@ -335,15 +335,15 @@
     }
   
     .input-animate {
-      height: 2.3rem;
+      height: 2.1rem;
       font-size: 0.8rem;
       padding: 0 0.6rem;
-      padding-right: 1.2rem;
+      padding-right: 0.8rem;
     }
   
     textarea.input-animate {
-      padding: 0.7rem;
-      padding-right: 0.8rem;
+      padding: 0.6rem;
+      padding-right: 0.7rem;
       rows: 5;
     }
   
