@@ -39,8 +39,7 @@ const MovingBar = () => {
     // Function to get a random premium color
     function getRandomPremiumColor() {
       const premiumColors = [
-    // Amber
-        "#FFD700", // Gold
+  
         "#F5DEB3"  // Wheat
       ];
       return premiumColors[Math.floor(Math.random() * premiumColors.length)];
