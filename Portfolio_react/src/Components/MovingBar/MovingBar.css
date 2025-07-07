@@ -1,109 +1,84 @@
-/* Moving Bar Container */
-.moving-bar-container {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  background-color: #1E293B;
+/* Container that holds video + bar */
+.moving-bar-section {
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  padding: 1rem 0;
+  width: 100%;
+  min-height: 50px;
+  overflow: hidden;
 }
 
-/* Moving Bar */
+/* Video full screen inside section */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.3) contrast(1) saturate(1);
+  z-index: 0;
+}
+
+/* Optional: dark overlay to improve text visibility */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.moving-bar-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2; /* Above video and overlay */
+}
+
 .moving-bar {
-  display: inline-flex;
-  white-space: nowrap;
-  background: linear-gradient(90deg, #FFD700, #FF6F61);
-  border-radius: 30px;
-  padding: 0.5rem 1rem;
+  display: flex;
   align-items: center;
-  height: 3rem;
-  transition: background 1.5s ease;
+  gap: 2.5rem;
 }
 
-/* Skill Item */
 .skill-item {
   display: flex;
   align-items: center;
-  padding: 0 1.5rem;
-  position: relative;
-}
-
-.skill-item:not(:last-child)::after {
-  content: "•";
-  position: absolute;
-  right: 0;
-  color: #1E293B;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 3rem;
-}
-
-/* Skill Text */
-.skill-item span {
-  font-size: 1.1rem;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   font-weight: 600;
-  color: #1E293B;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.05em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 0.25rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.skill-item span:hover,
-.skill-item span:active {
-  transform: scale(1.05);
-  color: #FFFFFF;
+.skill-item:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .moving-bar-container {
-    padding: 0; /* No top/bottom padding */
-  }
-
-  .moving-bar {
-    height: 2.2rem;
-    border-radius: 25px;
-    padding: 0.4rem 0.8rem;
-  }
-
   .skill-item {
-    padding: 0 0.8rem;
-  }
-
-  .skill-item:not(:last-child)::after {
-    font-size: 0.8rem;
-    line-height: 2.2rem;
-  }
-
-  .skill-item span {
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
 }
 
-@media (max-width: 480px) {
-  .moving-bar-container {
-    padding: 0; /* No top/bottom padding */
-  }
-
-  .moving-bar {
-    height: 2rem;
-    border-radius: 20px;
-    padding: 0.3rem 0.6rem;
-  }
-
-  .skill-item {
-    padding: 0 0.6rem;
-  }
-
-  .skill-item:not(:last-child)::after {
-    font-size: 0.7rem;
-    line-height: 2rem;
-  }
-
-  .skill-item span {
-    font-size: 0.85rem;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

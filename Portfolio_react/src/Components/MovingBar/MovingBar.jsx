@@ -1,111 +1,102 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './MovingBar.css';
+import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
 
 const MovingBar = () => {
   const containerRef = useRef(null);
   const barRef = useRef(null);
+  const videoRef = useRef(null);
   const timelineRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
     const bar = barRef.current;
     const isMobile = window.innerWidth <= 768;
-
-    // Calculate the full width of the content
     const contentWidth = bar.scrollWidth;
 
-    // Set initial position offscreen to the right
-    gsap.set(bar, { x: container.offsetWidth });
+    // Start the bar from visible position (no delay)
+    gsap.set(bar, { x: 0 });
 
-    // Create the animation timeline
     timelineRef.current = gsap.timeline({
-      repeat: -1, // Infinite repeat
-      paused: true, // Start paused for IntersectionObserver
+      repeat: -1,
+      paused: false, // Start immediately
       onRepeat: () => {
-        // Change background color on each repeat
         gsap.to(bar, {
           background: `linear-gradient(90deg, ${getRandomPremiumColor()}, ${getRandomPremiumColor()})`,
-          duration: isMobile ? 1.5 : 2,
+          duration: 2,
           ease: 'power1.inOut',
         });
       },
     });
 
-    // Add the main animation
     timelineRef.current.to(bar, {
-      x: -contentWidth, // Move to left (beyond the container)
-      duration: isMobile ? 15 : 20,
-      ease: 'none', // Linear movement
+      x: -contentWidth / 2, // Only half width needed because we duplicate the items
+      duration: isMobile ? 15 : 25, // Faster for mobile
+      ease: 'linear',
     });
 
-    // IntersectionObserver to play/pause animation
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          timelineRef.current.play();
-        } else {
-          timelineRef.current.pause();
-        }
-      },
-      { threshold: 0.1 }
-    );
 
-    if (container) {
-      observer.observe(container);
-    }
 
-    // Function to get a random premium color
-    function getRandomPremiumColor() {
-      const premiumColors = [
-        '#FFD700', // Gold
-        '#FF6F61', // Coral
-        '#6B7280', // Cool Gray
-        '#34D399', // Emerald
-        '#60A5FA', // Blue
-        '#F472B6', // Pink
-      ];
-      return premiumColors[Math.floor(Math.random() * premiumColors.length)];
-    }
-
-    // Clean up
     return () => {
       if (timelineRef.current) timelineRef.current.kill();
-      if (container) observer.unobserve(container);
       gsap.killTweensOf(bar);
     };
   }, []);
 
-  // Array of skills/technologies to display
   const skills = [
-    'React',
-    'JavaScript',
-    'TypeScript',
-    'Node.js',
-    'GSAP',
-    'Vite',
-    'CSS',
-    'HTML5',
-    'Redux',
-    'Tailwind',
-    'Next.js',
-    'Three.js',
+    'React', 'JavaScript', 'TypeScript', 'Node.js',
+    'GSAP', 'Vite', 'CSS', 'HTML5',
+    'Redux', 'Tailwind', 'Next.js', 'Three.js',
   ];
 
   return (
-    <div className="moving-bar-container" ref={containerRef} aria-label="Skills Ticker">
-      <div ref={barRef} className="moving-bar">
-        {skills.map((skill, index) => (
-          <div key={index} className="skill-item" role="listitem">
-            <span>{skill}</span>
-          </div>
-        ))}
-        {/* Duplicate for seamless looping */}
-        {skills.map((skill, index) => (
-          <div key={`dup-${index}`} className="skill-item" role="listitem">
-            <span>{skill}</span>
-          </div>
-        ))}
+    <div className="moving-bar-section">
+      {/* Video Background */}
+      <div 
+        className="video-background"
+        style={{
+          position: 'absolute',
+          top: '-10%',
+          left: '-10%',
+          width: '120%',
+          height: '120%',
+          zIndex: 1,
+        }}
+      >
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            filter: 'brightness(0.3) contrast(1.1) hue-rotate(180deg)',
+          }}
+        >
+          <source src={videoMp4} type="video/mp4" />
+        </video>
+      </div>
+      {/* Overlay for video readability */}
+      <div className="video-overlay" />
+
+      {/* Moving Bar */}
+      <div className="moving-bar-container" ref={containerRef} aria-label="Skills Ticker">
+        <div ref={barRef} className="moving-bar">
+          {skills.map((skill, index) => (
+            <div key={index} className="skill-item" role="listitem">
+              <span>{skill}</span>
+            </div>
+          ))}
+          {skills.map((skill, index) => (
+            <div key={`dup-${index}`} className="skill-item" role="listitem">
+              <span>{skill}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
