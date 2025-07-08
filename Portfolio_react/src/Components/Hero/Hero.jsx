@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm'; // Note: Consider compressing this video to <1MB for better performance
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
+
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -34,7 +35,7 @@ const Hero = () => {
     if (!isLoaded) return;
     [contentRef, titleRef, descriptionRef, actionRef].forEach((ref, index) => {
       if (ref.current) {
-        ref.current.style.transitionDelay = `${index * 0.2}s`;
+        ref.current.style.transitionDelay = `${index * 0.15}s`;
         ref.current.classList.add('animate-in');
       }
     });
@@ -43,7 +44,7 @@ const Hero = () => {
   // Simplified parallax effect
   const handleScroll = useCallback(() => {
     if (isMobile || !videoRef.current) return;
-    videoRef.current.style.transform = `translate(-50%, -50%) translateY(${window.pageYOffset * 0.2}px)`;
+    videoRef.current.style.transform = `translate(-50%, -50%) translateY(${window.pageYOffset * 0.15}px)`;
   }, [isMobile]);
 
   useEffect(() => {
@@ -66,12 +67,12 @@ const Hero = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%)',
+        background: 'linear-gradient(135deg, #0a0a1b 0%, #15152a 100%)',
       }}
       role="banner"
       aria-label="Hero section"
     >
-      {/* Video Background - Optimized for both desktop and mobile */}
+      {/* Video Background */}
       <div
         style={{
           position: 'absolute',
@@ -92,10 +93,10 @@ const Hero = () => {
           preload="metadata"
           loading="lazy"
           style={{
-            width: isMobile ? '100%' : '120%',
-            height: isMobile ? '100%' : '120%',
+            width: '100%',
+            height: '100%',
             objectFit: 'cover',
-            filter: `brightness(${isMobile ? 0.4 : 0.3}) contrast(1.1)`,
+            filter: `brightness(${isMobile ? 0.35 : 0.3}) contrast(1.2)`,
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -105,6 +106,7 @@ const Hero = () => {
           aria-hidden="true"
         >
           <source src={videoWebM} type="video/webm" />
+          
           <track kind="captions" srcLang="en" label="Background video" />
         </video>
       </div>
@@ -117,7 +119,7 @@ const Hero = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 100%)',
+          background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%)',
           zIndex: 1,
         }}
         aria-hidden="true"
@@ -131,10 +133,10 @@ const Hero = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: `linear-gradient(rgba(99, 102, 241, ${isMobile ? 0.03 : 0.08}) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, ${isMobile ? 0.03 : 0.08}) 1px, transparent 1px)`,
-          backgroundSize: isMobile ? '30px 30px' : '40px 40px',
+          backgroundImage: `linear-gradient(rgba(124, 58, 237, ${isMobile ? 0.02 : 0.05}) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 58, 237, ${isMobile ? 0.02 : 0.05}) 1px, transparent 1px)`,
+          backgroundSize: isMobile ? '25px 25px' : '35px 35px',
           zIndex: 2,
-          animation: isMobile ? 'none' : 'gridMove 20s linear infinite',
+          animation: isMobile ? 'none' : 'gridMove 25s linear infinite',
         }}
         aria-hidden="true"
       />
@@ -149,35 +151,36 @@ const Hero = () => {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          padding: isMobile ? '2rem 1rem' : '0 2rem',
-          maxWidth: '1000px',
+          padding: isMobile ? '1.5rem 1rem' : '0 2rem',
+          maxWidth: '900px',
           width: '100%',
           opacity: 0,
-          transform: 'translateY(20px)',
-          transition: 'opacity 0.6s ease, transform 0.6s ease',
+          transform: 'translateY(15px)',
+          transition: 'opacity 0.5s ease, transform 0.5s ease',
         }}
       >
         {/* Title */}
         <h1
           ref={titleRef}
           style={{
-            fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(2.2rem, 5vw, 4rem)',
+            fontSize: isMobile ? 'clamp(1.4rem, 5vw, 2rem)' : 'clamp(2rem, 4vw, 3.2rem)',
             fontWeight: 700,
             color: '#ffffff',
-            marginBottom: isMobile ? '0.5rem' : '1.2rem',
+            marginBottom: isMobile ? '0.5rem' : '1rem',
             opacity: 0,
-            transform: 'translateY(15px)',
-            transition: 'opacity 0.6s ease, transform 0.6s ease',
-            lineHeight: 1.2,
+            transform: 'translateY(10px)',
+            transition: 'opacity 0.5s ease, transform 0.5s ease',
+            lineHeight: 1.3,
+            fontFamily: '"Inter", system-ui, -apple-system, sans-serif',
           }}
           role="heading"
           aria-level="1"
         >
-          <span style={{ display: 'block', marginBottom: isMobile ? '0.3rem' : '0.8rem' }}>
+          <span style={{ display: 'block', marginBottom: isMobile ? '0.2rem' : '0.5rem' }}>
             Hello, I'm{' '}
             <span
               style={{
-                background: 'linear-gradient(135deg, #6366f1, #a855f7, #ec4899)',
+                background: 'linear-gradient(135deg, #7c3aed, #db2777)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -189,9 +192,9 @@ const Hero = () => {
           </span>
           <span
             style={{
-              fontSize: isMobile ? 'clamp(0.9rem, 4vw, 1.4rem)' : 'clamp(1.3rem, 3vw, 2rem)',
+              fontSize: isMobile ? 'clamp(0.85rem, 3.5vw, 1.1rem)' : 'clamp(1.1rem, 2vw, 1.5rem)',
               fontWeight: 400,
-              color: '#e5e7eb',
+              color: '#d1d5db',
               display: 'block',
             }}
           >
@@ -203,17 +206,18 @@ const Hero = () => {
         <p
           ref={descriptionRef}
           style={{
-            fontSize: isMobile ? 'clamp(0.85rem, 3.5vw, 1rem)' : 'clamp(1rem, 1.8vw, 1.15rem)',
+            fontSize: isMobile ? 'clamp(0.8rem, 3vw, 0.95rem)' : 'clamp(0.95rem, 1.5vw, 1.1rem)',
             color: '#d1d5db',
-            maxWidth: isMobile ? '95%' : '550px',
-            lineHeight: 1.5,
-            marginBottom: isMobile ? '1.8rem' : '2rem',
+            maxWidth: isMobile ? '90%' : '500px',
+            lineHeight: 1.6,
+            marginBottom: isMobile ? '1.5rem' : '1.8rem',
             opacity: 0,
-            transform: 'translateY(15px)',
-            transition: 'opacity 0.6s ease, transform 0.6s ease',
+            transform: 'translateY(10px)',
+            transition: 'opacity 0.5s ease, transform 0.5s ease',
+            fontFamily: '"Inter", system-ui, -apple-system, sans-serif',
           }}
         >
-          Building seamless, scalable, and user-centric digital experiences through innovation and cutting-edge technology.
+          Crafting seamless, scalable, and user-centric digital experiences with innovative technology.
         </p>
 
         {/* Action Buttons */}
@@ -222,44 +226,54 @@ const Hero = () => {
           style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '0.75rem' : '1.2rem',
+            gap: isMobile ? '0.5rem' : '1rem',
             alignItems: 'center',
             justifyContent: 'center',
             width: isMobile ? '100%' : 'auto',
-            maxWidth: isMobile ? '280px' : 'none',
+            maxWidth: isMobile ? '250px' : 'none',
             opacity: 0,
-            transform: 'translateY(15px)',
-            transition: 'opacity 0.6s ease, transform 0.6s ease',
+            transform: 'translateY(10px)',
+            transition: 'opacity 0.5s ease, transform 0.5s ease',
           }}
         >
           <a
             href="#Contact"
             style={{
-              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 1.8rem',
-              fontSize: isMobile ? '0.9rem' : '1rem',
+              padding: isMobile ? '0.6rem 1.2rem' : '0.7rem 1.5rem',
+              fontSize: isMobile ? '0.85rem' : '0.9rem',
               fontWeight: 600,
               color: '#ffffff',
               textDecoration: 'none',
-              background: 'linear-gradient(135deg, #6366f1, #a855f7)',
-              borderRadius: '9999px',
-              boxShadow: '0 8px 20px rgba(99, 102, 241, 0.2)',
+              background: 'linear-gradient(135deg, #7c3aed, #db2777)',
+              borderRadius: '999px',
+              boxShadow: '0 4px 12px rgba(124, 58, 237, 0.2)',
               width: isMobile ? '100%' : 'auto',
-              minWidth: isMobile ? 'auto' : '160px',
+              minWidth: isMobile ? 'auto' : '140px',
               textAlign: 'center',
               display: 'inline-block',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent',
             }}
             onMouseEnter={(e) => {
               if (!isMobile) {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 12px 25px rgba(99, 102, 241, 0.3)';
+                e.target.style.transform = 'scale(1.05)';
+                e.target.style.boxShadow = '0 6px 16px rgba(124, 58, 237, 0.3)';
               }
             }}
             onMouseLeave={(e) => {
               if (!isMobile) {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 8px 20px rgba(99, 102, 241, 0.2)';
+                e.target.style.transform = 'scale(1)';
+                e.target.style.boxShadow = '0 4px 12px rgba(124, 58, 237, 0.2)';
               }
+            }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'scale(0.98)';
+              e.target.style.boxShadow = '0 2px 8px rgba(124, 58, 237, 0.3)';
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.transform = 'scale(1)';
+              e.target.style.boxShadow = '0 4px 12px rgba(124, 58, 237, 0.2)';
             }}
             aria-label="Connect with Moneesha Aravindi"
           >
@@ -269,33 +283,43 @@ const Hero = () => {
             href="/resume.pdf"
             download
             style={{
-              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 1.8rem',
-              fontSize: isMobile ? '0.9rem' : '1rem',
+              padding: isMobile ? '0.6rem 1.2rem' : '0.7rem 1.5rem',
+              fontSize: isMobile ? '0.85rem' : '0.9rem',
               fontWeight: 600,
               color: '#ffffff',
               textDecoration: 'none',
-              background: 'rgba(255, 255, 255, 0.08)',
-              border: '2px solid rgba(255, 255, 255, 0.15)',
-              borderRadius: '9999px',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '999px',
               width: isMobile ? '100%' : 'auto',
-              minWidth: isMobile ? 'auto' : '160px',
+              minWidth: isMobile ? 'auto' : '140px',
               textAlign: 'center',
               display: 'inline-block',
               transition: 'transform 0.2s ease, background 0.2s ease, border-color 0.2s ease',
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent',
             }}
             onMouseEnter={(e) => {
               if (!isMobile) {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.target.style.transform = 'scale(1.05)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
               }
             }}
             onMouseLeave={(e) => {
               if (!isMobile) {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.08)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                e.target.style.transform = 'scale(1)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
               }
+            }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'scale(0.98)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.transform = 'scale(1)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
             }}
             aria-label="Download Moneesha Aravindi's resume"
           >
@@ -309,27 +333,27 @@ const Hero = () => {
         <div
           style={{
             position: 'absolute',
-            bottom: '1.5rem',
+            bottom: '1rem',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 3,
-            color: '#ffffff',
-            fontSize: '0.85rem',
+            color: '#d1d5db',
+            fontSize: '0.8rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '0.4rem',
-            opacity: 0.6,
+            gap: '0.3rem',
+            opacity: 0.7,
             transition: 'opacity 0.3s ease',
           }}
           aria-hidden="true"
         >
-          <span>Scroll to explore</span>
+          <span>Scroll</span>
           <div
             style={{
               width: '2px',
-              height: '25px',
-              background: 'linear-gradient(to bottom, #6366f1, transparent)',
+              height: '20px',
+              background: 'linear-gradient(to bottom, #7c3aed, transparent)',
               borderRadius: '2px',
             }}
           />
@@ -341,34 +365,52 @@ const Hero = () => {
         {`
           @keyframes gridMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(40px, 40px); }
+            100% { transform: translate(35px, 35px); }
           }
           .animate-in {
             opacity: 1 !important;
             transform: translateY(0) !important;
           }
           @media (max-width: 768px) {
-            a { 
-              min-height: 44px;
-              font-size: 0.9rem !important;
+            a {
+              min-height: 40px;
+              font-size: 0.85rem !important;
+              padding: 0.6rem 1.2rem !important;
             }
           }
           @media (max-width: 480px) {
-            a { 
-              font-size: 0.85rem !important;
-              padding: 0.65rem 1.2rem !important;
+            a {
+              font-size: 0.8rem !important;
+              padding: 0.5rem 1rem !important;
+            }
+            h1 {
+              font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+            }
+            p {
+              font-size: clamp(0.75rem, 2.5vw, 0.9rem) !important;
             }
           }
           @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
+            * {
+              animation: none !important;
+              transition: none !important;
+            }
           }
           @media (prefers-contrast: high) {
-            h1 { text-shadow: none !important; }
-            a { border-width: 3px !important; }
+            h1 {
+              text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+            }
+            a {
+              border-width: 2px !important;
+            }
           }
           a:focus-visible {
-            outline: 2px solid #6366f1;
+            outline: 2px solid #7c3aed;
             outline-offset: 2px;
+            border-radius: 999px;
+          }
+          video {
+            transform: translate3d(-50%, -50%, 0);
           }
         `}
       </style>
@@ -377,6 +419,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-// Cache control for static assets (add to server configuration):
-// Cache-Control: public, max-age=31536000, immutable for videoMp4
