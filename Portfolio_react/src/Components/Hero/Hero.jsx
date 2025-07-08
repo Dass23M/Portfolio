@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4'; // Note: Consider compressing this video to <1MB for better performance
+import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.WebM'; // Note: Consider compressing this video to <1MB for better performance
 
 const Hero = () => {
   const heroRef = useRef(null);
