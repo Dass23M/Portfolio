@@ -377,7 +377,6 @@ const Navbar = () => {
             alignItems: 'flex-end',
             padding: '1rem',
             height: '100vh',
-            height: '-webkit-fill-available',
             transition: 'opacity 0.3s ease',
             opacity: mobileMenuOpen ? 1 : 0,
             touchAction: 'none',

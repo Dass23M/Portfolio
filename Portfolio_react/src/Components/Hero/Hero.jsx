@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm'; // Note: Consider compressing this video to <1MB for better performance
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -222,11 +222,11 @@ const Hero = () => {
           style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '0.75rem' : '1.2rem',
+            gap: isMobile ? '0.7rem' : '1.2rem',
             alignItems: 'center',
             justifyContent: 'center',
             width: isMobile ? '100%' : 'auto',
-            maxWidth: isMobile ? '280px' : 'none',
+            maxWidth: isMobile ? '250px' : 'none',
             opacity: 0,
             transform: 'translateY(15px)',
             transition: 'opacity 0.6s ease, transform 0.6s ease',
@@ -235,8 +235,8 @@ const Hero = () => {
           <a
             href="#Contact"
             style={{
-              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 1.8rem',
-              fontSize: isMobile ? '0.9rem' : '1rem',
+              padding: isMobile ? '0.6rem 1.2rem' : '0.9rem 1.8rem',
+              fontSize: isMobile ? '0.85rem' : '1rem',
               fontWeight: 600,
               color: '#ffffff',
               textDecoration: 'none',
@@ -269,8 +269,8 @@ const Hero = () => {
             href="/resume.pdf"
             download
             style={{
-              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 1.8rem',
-              fontSize: isMobile ? '0.9rem' : '1rem',
+              padding: isMobile ? '0.6rem 1.2rem' : '0.9rem 1.8rem',
+              fontSize: isMobile ? '0.85rem' : '1rem',
               fontWeight: 600,
               color: '#ffffff',
               textDecoration: 'none',
@@ -336,39 +336,75 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Inline Critical CSS */}
+      {/* Optimized CSS */}
       <style>
         {`
           @keyframes gridMove {
             0% { transform: translate(0, 0); }
             100% { transform: translate(40px, 40px); }
           }
+          
           .animate-in {
             opacity: 1 !important;
             transform: translateY(0) !important;
           }
+          
+          /* Mobile optimizations */
           @media (max-width: 768px) {
             a { 
-              min-height: 44px;
-              font-size: 0.9rem !important;
+              min-height: 40px !important;
+              font-size: 0.85rem !important;
+              padding: 0.6rem 1.2rem !important;
             }
           }
+          
           @media (max-width: 480px) {
             a { 
-              font-size: 0.85rem !important;
-              padding: 0.65rem 1.2rem !important;
+              font-size: 0.8rem !important;
+              padding: 0.55rem 1rem !important;
+              min-height: 38px !important;
             }
           }
+          
+          @media (max-width: 360px) {
+            a { 
+              font-size: 0.75rem !important;
+              padding: 0.5rem 0.8rem !important;
+              min-height: 36px !important;
+            }
+          }
+          
+          /* Accessibility */
           @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
           }
+          
           @media (prefers-contrast: high) {
-            h1 { text-shadow: none !important; }
-            a { border-width: 3px !important; }
+            h1 { 
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important; 
+            }
+            a { 
+              border-width: 3px !important; 
+              font-weight: 700 !important;
+            }
           }
+          
+          /* Focus styles */
           a:focus-visible {
-            outline: 2px solid #6366f1;
-            outline-offset: 2px;
+            outline: 2px solid #6366f1 !important;
+            outline-offset: 2px !important;
+          }
+          
+          /* Touch targets */
+          @media (pointer: coarse) {
+            a {
+              min-height: 44px !important;
+              min-width: 44px !important;
+            }
           }
         `}
       </style>
@@ -377,6 +413,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-// Cache control for static assets (add to server configuration):
-// Cache-Control: public, max-age=31536000, immutable for videoMp4
