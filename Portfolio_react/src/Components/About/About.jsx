@@ -125,7 +125,7 @@ const About = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'brightness(0.5) contrast(2.9) hue-rotate(160deg)',
+            filter: 'brightness(0.7) contrast(1.9) hue-rotate(160deg)',
           }}
         >
           <source src={videoWebM} type="video/webm" />

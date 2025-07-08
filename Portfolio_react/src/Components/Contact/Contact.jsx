@@ -5,7 +5,6 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { Mail, MapPin, Phone, Send, User, MessageSquare } from 'lucide-react';
 import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
-
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -337,7 +336,7 @@ const Contact = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'brightness(0.6) contrast(1.1) hue-rotate(180deg) saturate(1.2)',
+            filter: 'brightness(0.7) contrast(1.1) hue-rotate(180deg) saturate(1.2)',
           }}
         >
           <source src={videoWebM} type="video/webm" />
@@ -546,8 +545,9 @@ const Contact = () => {
           position: relative;
           z-index: 3;
           max-width: 1200px;
-          width: 100%;
-          padding: 0 2rem;
+          width: 90%;
+          margin: 0 auto;
+          padding: 0 1.5rem;
         }
 
         .contact-title {
@@ -575,29 +575,32 @@ const Contact = () => {
         .contact-section {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 4rem;
+          gap: 3rem;
           align-items: start;
+          max-width: 100%;
         }
 
         .contact-left h1 {
-          font-size: clamp(2rem, 4vw, 3rem);
+          font-size: clamp(1.8rem, 3.5vw, 2.8rem);
           font-weight: 700;
           color: #ffffff;
           margin-bottom: 1.5rem;
-          line-height: 1.2;
+          line-height: 1.3;
         }
 
         .contact-left p {
-          font-size: 1.1rem;
+          font-size: clamp(1rem, 2vw, 1.1rem);
           color: #d1d5db;
           line-height: 1.7;
-          margin-bottom: 3rem;
+          margin-bottom: 2.5rem;
+          max-width: 90%;
         }
 
         .contact-details {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
+          max-width: 80%;
         }
 
         .contact-detail {
@@ -631,16 +634,26 @@ const Contact = () => {
           font-weight: 500;
         }
 
+        .contact-right {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         .contact-form {
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 20px;
-          padding: 2.5rem;
+          padding: 2rem;
           backdrop-filter: blur(20px);
+          width: 100%;
+          max-width: 500px;
+          margin: 0 auto;
         }
 
         .form-group {
-          margin-bottom: 2rem;
+          margin-bottom: 1.75rem;
+          width: 100%;
         }
 
         .form-group label {
@@ -649,7 +662,7 @@ const Contact = () => {
           gap: 0.5rem;
           color: #d1d5db;
           font-weight: 500;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.75rem;
           font-size: 0.95rem;
         }
 
@@ -664,6 +677,7 @@ const Contact = () => {
           font-size: 1rem;
           transition: all 0.3s ease;
           resize: vertical;
+          box-sizing: border-box;
         }
 
         .form-group input::placeholder,
@@ -673,7 +687,7 @@ const Contact = () => {
 
         .submit-button {
           width: 100%;
-          padding: 1rem 2rem;
+          padding: 1rem;
           background: linear-gradient(135deg, #6366f1, #a855f7);
           color: #ffffff;
           border: none;
@@ -732,19 +746,43 @@ const Contact = () => {
 
           .contact-content {
             padding: 0 1rem;
+            width: 95%;
           }
 
           .contact-title {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
           }
 
           .contact-section {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
+          }
+
+          .contact-left {
+            text-align: center;
+          }
+
+          .contact-left h1 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+          }
+
+          .contact-left p {
+            max-width: 100%;
+            margin-bottom: 2rem;
+          }
+
+          .contact-details {
+            max-width: 100%;
+            align-items: center;
+          }
+
+          .contact-right {
+            padding: 0 1rem;
           }
 
           .contact-form {
-            padding: 2rem;
+            padding: 1.75rem;
+            max-width: 100%;
           }
 
           .form-group {
@@ -758,7 +796,7 @@ const Contact = () => {
 
         @media (max-width: 480px) {
           .contact-form {
-            padding: 1.5rem;
+            padding: 1.25rem;
           }
 
           .contact-detail {
@@ -768,6 +806,11 @@ const Contact = () => {
           .contact-icon {
             width: 40px;
             height: 40px;
+          }
+
+          .submit-button {
+            padding: 0.9rem;
+            font-size: 1rem;
           }
         }
 

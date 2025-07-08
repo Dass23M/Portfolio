@@ -255,7 +255,7 @@ const MyProjects = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'brightness(0.6) contrast(1.2) hue-rotate(200deg)',
+            filter: 'brightness(0.8) contrast(1.2) hue-rotate(200deg)',
           }}
         >
           <source src={videoWebM} type="video/webm" />

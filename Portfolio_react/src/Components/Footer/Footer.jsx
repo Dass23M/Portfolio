@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Footer.css";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -46,7 +45,7 @@ const Footer = () => {
       const windowHeight = window.innerHeight;
       
       if (scrolled + windowHeight > footerTop && scrolled < footerTop + footerHeight) {
-        const parallaxValue = (scrolled - footerTop) * 0.2;
+        const parallaxValue = (scrolled - footerTop) * 0.15;
         
         if (videoRef.current) {
           videoRef.current.style.transform = `translateY(${parallaxValue}px)`;
@@ -65,8 +64,8 @@ const Footer = () => {
       const deltaY = (clientY - centerY) / centerY;
 
       if (contentRef.current) {
-        const x = deltaX * 0.5;
-        const y = deltaY * 0.5;
+        const x = deltaX * 0.4;
+        const y = deltaY * 0.4;
         contentRef.current.style.transform = `translate(${x}px, ${y}px)`;
       }
     };
@@ -87,11 +86,11 @@ const Footer = () => {
     // Animate main content container
     gsap.fromTo(
       contentRef.current,
-      { opacity: 0, y: 60 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        duration: isMobile ? 0.8 : 1.2,
+        duration: isMobile ? 0.7 : 1,
         ease: "power3.out",
         delay: 0.2,
       }
@@ -100,57 +99,57 @@ const Footer = () => {
     // Footer sections stagger animation
     gsap.fromTo(
       [aboutRef.current, linksRef.current, socialsRef.current, contactRef.current],
-      { opacity: 0, y: 40, scale: 0.95 },
+      { opacity: 0, y: 30, scale: 0.97 },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: isMobile ? 0.8 : 1,
-        stagger: 0.15,
-        ease: "back.out(1.7)",
-        delay: 0.4,
+        duration: isMobile ? 0.7 : 0.9,
+        stagger: 0.1,
+        ease: "back.out(1.5)",
+        delay: 0.3,
       }
     );
 
     // Social icons individual animation
     gsap.fromTo(
       socialsRef.current.querySelectorAll(".social-icon"),
-      { opacity: 0, scale: 0.6, rotation: -180 },
+      { opacity: 0, scale: 0.7, rotation: -90 },
       {
         opacity: 1,
         scale: 1,
         rotation: 0,
-        duration: isMobile ? 0.6 : 0.8,
-        stagger: 0.1,
-        ease: "elastic.out(1, 0.5)",
-        delay: 0.8,
+        duration: isMobile ? 0.5 : 0.7,
+        stagger: 0.08,
+        ease: "elastic.out(1, 0.6)",
+        delay: 0.6,
       }
     );
 
     // Bottom section animation
     gsap.fromTo(
       bottomRef.current,
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
-        duration: isMobile ? 0.6 : 0.8,
+        duration: isMobile ? 0.5 : 0.7,
         ease: "power2.out",
-        delay: 1,
+        delay: 0.8,
       }
     );
 
     // Floating particles animation
     gsap.to(".floating-particle", {
-      y: "random(-20, 20)",
-      x: "random(-10, 10)",
-      rotation: "random(-360, 360)",
-      duration: "random(3, 6)",
+      y: "random(-15, 15)",
+      x: "random(-8, 8)",
+      rotation: "random(-180, 180)",
+      duration: "random(2.5, 5)",
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
       stagger: {
-        amount: 2,
+        amount: 1.5,
         from: "random"
       }
     });
@@ -164,14 +163,14 @@ const Footer = () => {
       aria-label="Footer"
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '70vh',
         width: '100%',
         overflow: 'hidden',
-        background: '#000000',
+        background: '#0a0a0a',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: '0',
+        padding: '2rem 0',
       }}
     >
       {/* Video Background */}
@@ -179,10 +178,10 @@ const Footer = () => {
         className="video-background"
         style={{
           position: 'absolute',
-          top: '-10%',
-          left: '-10%',
-          width: '120%',
-          height: '120%',
+          top: '-5%',
+          left: '-5%',
+          width: '110%',
+          height: '110%',
           zIndex: 1,
         }}
       >
@@ -196,7 +195,7 @@ const Footer = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'brightness(0.25) contrast(1.2) hue-rotate(240deg)',
+            filter: 'brightness(0.75) contrast(1.15) hue-rotate(220deg)',
           }}
         >
           <source src={videoWebM} type="video/webm" />
@@ -213,10 +212,10 @@ const Footer = () => {
           width: '100%',
           height: '100%',
           background: `
-            radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
-            radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
-            radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
-            linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%)
+            radial-gradient(circle at 25% 15%, rgba(99, 102, 241, 0.15) 0%, transparent 55%),
+            radial-gradient(circle at 75% 85%, rgba(168, 85, 247, 0.15) 0%, transparent 55%),
+            radial-gradient(circle at 15% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 55%),
+            linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%)
           `,
           zIndex: 2,
         }}
@@ -231,29 +230,29 @@ const Footer = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px)
+            linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px',
+          backgroundSize: '30px 30px',
           zIndex: 2,
-          animation: 'gridMove 20s linear infinite',
+          animation: 'gridMove 25s linear infinite',
         }}
       />
 
       {/* Floating Particles */}
-      {[...Array(8)].map((_, i) => (
+      {[...Array(6)].map((_, i) => (
         <div
           key={i}
           className="floating-particle"
           style={{
             position: 'absolute',
-            width: `${8 + i * 4}px`,
-            height: `${8 + i * 4}px`,
+            width: `${6 + i * 3}px`,
+            height: `${6 + i * 3}px`,
             borderRadius: '50%',
             background: `linear-gradient(45deg, ${['#6366f1', '#a855f7', '#10b981', '#f59e0b', '#ef4444'][i % 5]}, transparent)`,
-            opacity: 0.15,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
+            opacity: 0.12,
+            top: `${10 + i * 15}%`,
+            left: `${10 + i * 15}%`,
             zIndex: 2,
           }}
         />
@@ -266,19 +265,19 @@ const Footer = () => {
         style={{
           position: 'relative',
           zIndex: 3,
-          maxWidth: '1200px',
-          width: '100%',
+          maxWidth: '1280px',
+          width: '90%',
           margin: '0 auto',
-          padding: '4rem 2rem',
+          padding: '2.5rem 1rem',
         }}
       >
         {/* Footer Grid */}
         <div 
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '3rem',
-            marginBottom: '3rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '2rem',
+            marginBottom: '2rem',
           }}
         >
           {/* About Section */}
@@ -286,15 +285,15 @@ const Footer = () => {
             className="footer-section"
             ref={aboutRef}
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '20px',
-              padding: '2rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(15px)',
+              background: 'rgba(255, 255, 255, 0.06)',
+              borderRadius: '16px',
+              padding: '1.5rem',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(12px)',
             }}
           >
             <h4 style={{
-              fontSize: '1.5rem',
+              fontSize: '1.25rem',
               fontWeight: '600',
               color: '#ffffff',
               marginBottom: '1rem',
@@ -303,8 +302,8 @@ const Footer = () => {
               gap: '0.5rem',
             }}>
               <span style={{
-                width: '8px',
-                height: '8px',
+                width: '6px',
+                height: '6px',
                 background: 'linear-gradient(135deg, #6366f1, #a855f7)',
                 borderRadius: '50%',
                 display: 'inline-block',
@@ -312,13 +311,12 @@ const Footer = () => {
               About Me
             </h4>
             <p style={{
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               color: '#d1d5db',
-              lineHeight: '1.7',
+              lineHeight: '1.6',
               margin: 0,
             }}>
-              I'm a dedicated full-stack web developer skilled in building
-              responsive and user-friendly applications. Let's collaborate to bring your ideas to life!
+              I'm a passionate full-stack web developer focused on creating seamless, responsive, and innovative digital solutions. Let's bring your vision to life!
             </p>
           </div>
 
@@ -327,15 +325,15 @@ const Footer = () => {
             className="footer-section"
             ref={linksRef}
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '20px',
-              padding: '2rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(15px)',
+              background: 'rgba(255, 255, 255, 0.06)',
+              borderRadius: '16px',
+              padding: '1.5rem',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(12px)',
             }}
           >
             <h4 style={{
-              fontSize: '1.5rem',
+              fontSize: '1.25rem',
               fontWeight: '600',
               color: '#ffffff',
               marginBottom: '1rem',
@@ -344,8 +342,8 @@ const Footer = () => {
               gap: '0.5rem',
             }}>
               <span style={{
-                width: '8px',
-                height: '8px',
+                width: '6px',
+                height: '6px',
                 background: 'linear-gradient(135deg, #a855f7, #ec4899)',
                 borderRadius: '50%',
                 display: 'inline-block',
@@ -356,22 +354,25 @@ const Footer = () => {
               listStyle: 'none',
               padding: 0,
               margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
             }}>
-              {['Projects', 'Skills', 'Contact', 'Blog'].map((link, index) => (
-                <li key={index} style={{ marginBottom: '0.75rem' }}>
+              {['Home', 'Projects', 'Skills', 'Contact'].map((link, index) => (
+                <li key={index}>
                   <a 
                     href={`#${link.toLowerCase()}`}
                     style={{
                       color: '#d1d5db',
                       textDecoration: 'none',
-                      fontSize: '1rem',
+                      fontSize: '0.95rem',
                       transition: 'all 0.3s ease',
                       display: 'inline-block',
                       position: 'relative',
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.color = '#6366f1';
-                      e.target.style.transform = 'translateX(5px)';
+                      e.target.style.transform = 'translateX(4px)';
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.color = '#d1d5db';
@@ -390,15 +391,15 @@ const Footer = () => {
             className="footer-section"
             ref={socialsRef}
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '20px',
-              padding: '2rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(15px)',
+              background: 'rgba(255, 255, 255, 0.06)',
+              borderRadius: '16px',
+              padding: '1.5rem',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(12px)',
             }}
           >
             <h4 style={{
-              fontSize: '1.5rem',
+              fontSize: '1.25rem',
               fontWeight: '600',
               color: '#ffffff',
               marginBottom: '1rem',
@@ -407,8 +408,8 @@ const Footer = () => {
               gap: '0.5rem',
             }}>
               <span style={{
-                width: '8px',
-                height: '8px',
+                width: '6px',
+                height: '6px',
                 background: 'linear-gradient(135deg, #ec4899, #f59e0b)',
                 borderRadius: '50%',
                 display: 'inline-block',
@@ -417,14 +418,15 @@ const Footer = () => {
             </h4>
             <div style={{
               display: 'flex',
-              gap: '1rem',
+              gap: '0.75rem',
               flexWrap: 'wrap',
+              justifyContent: 'flex-start',
             }}>
               {[
                 { icon: FaGithub, url: 'https://github.com', color: '#6366f1' },
                 { icon: FaLinkedin, url: 'https://linkedin.com', color: '#0077b5' },
                 { icon: FaTwitter, url: 'https://twitter.com', color: '#1da1f2' },
-                { icon: FaEnvelope, url: 'mailto:youremail@example.com', color: '#ef4444' },
+                { icon: FaEnvelope, url: 'mailto:dasunmethmal23@gmail.com', color: '#ef4444' },
               ].map((social, index) => {
                 const Icon = social.icon;
                 return (
@@ -435,29 +437,29 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="social-icon"
                     style={{
-                      width: '50px',
-                      height: '50px',
+                      width: '40px',
+                      height: '40px',
                       borderRadius: '50%',
-                      background: 'rgba(255, 255, 255, 0.1)',
+                      background: 'rgba(255, 255, 255, 0.08)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      backdropFilter: 'blur(10px)',
+                      transition: 'all 0.3s ease',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      backdropFilter: 'blur(8px)',
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.background = social.color;
-                      e.target.style.transform = 'translateY(-5px) scale(1.1)';
-                      e.target.style.boxShadow = `0 10px 25px ${social.color}40`;
+                      e.target.style.transform = 'translateY(-4px) scale(1.05)';
+                      e.target.style.boxShadow = `0 8px 20px ${social.color}30`;
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                      e.target.style.background = 'rgba(255, 255, 255, 0.08)';
                       e.target.style.transform = 'translateY(0) scale(1)';
                       e.target.style.boxShadow = 'none';
                     }}
                   >
-                    <Icon size={20} color="#ffffff" />
+                    <Icon size={18} color="#ffffff" />
                   </a>
                 );
               })}
@@ -469,15 +471,15 @@ const Footer = () => {
             className="footer-section"
             ref={contactRef}
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '20px',
-              padding: '2rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(15px)',
+              background: 'rgba(255, 255, 255, 0.06)',
+              borderRadius: '16px',
+              padding: '1.5rem',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(12px)',
             }}
           >
             <h4 style={{
-              fontSize: '1.5rem',
+              fontSize: '1.25rem',
               fontWeight: '600',
               color: '#ffffff',
               marginBottom: '1rem',
@@ -486,31 +488,31 @@ const Footer = () => {
               gap: '0.5rem',
             }}>
               <span style={{
-                width: '8px',
-                height: '8px',
+                width: '6px',
+                height: '6px',
                 background: 'linear-gradient(135deg, #10b981, #6366f1)',
                 borderRadius: '50%',
                 display: 'inline-block',
               }}></span>
               Get In Touch
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <FaEnvelope size={16} color="#6366f1" />
-                <span style={{ color: '#d1d5db', fontSize: '1rem' }}>
-                  youremail@example.com
+                <span style={{ color: '#d1d5db', fontSize: '0.95rem' }}>
+                  dasunmethmal23@gmail.com
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <FaPhone size={16} color="#a855f7" />
-                <span style={{ color: '#d1d5db', fontSize: '1rem' }}>
-                  +1 (555) 123-4567
+                <span style={{ color: '#d1d5db', fontSize: '0.95rem' }}>
+                  +94 77 457 8912
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <FaMapMarkerAlt size={16} color="#ec4899" />
-                <span style={{ color: '#d1d5db', fontSize: '1rem' }}>
-                  Your City, Country
+                <span style={{ color: '#d1d5db', fontSize: '0.95rem' }}>
+                  Colombo 03, Sri Lanka
                 </span>
               </div>
             </div>
@@ -523,15 +525,15 @@ const Footer = () => {
           ref={bottomRef}
           style={{
             textAlign: 'center',
-            padding: '2rem 0',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-            background: 'rgba(255, 255, 255, 0.02)',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)',
+            padding: '1.5rem 0',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'rgba(255, 255, 255, 0.03)',
+            borderRadius: '12px',
+            backdropFilter: 'blur(8px)',
           }}
         >
           <p style={{
-            fontSize: '1rem',
+            fontSize: '0.9rem',
             color: '#9ca3af',
             margin: 0,
             fontWeight: '400',
@@ -540,10 +542,10 @@ const Footer = () => {
             <span style={{
               display: 'block',
               marginTop: '0.5rem',
-              fontSize: '0.875rem',
+              fontSize: '0.8rem',
               color: '#6b7280',
             }}>
-              Crafted with ❤️ and cutting-edge technology
+              Crafted with ❤️ using modern web technologies
             </span>
           </p>
         </div>
@@ -553,30 +555,105 @@ const Footer = () => {
       <style jsx>{`
         @keyframes gridMove {
           0% { transform: translate(0, 0); }
-          100% { transform: translate(40px, 40px); }
+          100% { transform: translate(30px, 30px); }
         }
         
         .footer-section {
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s ease;
         }
         
         .footer-section:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+          transform: translateY(-4px);
+          box-shadow: 0 15px 30px rgba(99, 102, 241, 0.08);
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .footer-content {
             padding: 2rem 1rem !important;
           }
           
           .footer-content > div {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+            gap: 1.5rem !important;
           }
           
           .footer-section {
-            padding: 1.5rem !important;
+            padding: 1.25rem !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .footer {
+            min-height: auto !important;
+            padding: 1.5rem 0 !important;
+          }
+
+          .footer-content {
+            width: 95% !important;
+            padding: 1.5rem 0.75rem !important;
+          }
+          
+          .footer-content > div {
+            grid-template-columns: 1fr !important;
+            gap: 1.25rem !important;
+          }
+          
+          .footer-section {
+            padding: 1.25rem !important;
+            text-align: center;
+          }
+
+          .footer-section h4 {
+            justify-content: center;
+            font-size: 1.1rem !important;
+          }
+
+          .footer-section ul {
+            align-items: center;
+          }
+
+          .footer-section .social-icon {
+            width: 36px !important;
+            height: 36px !important;
+          }
+
+          .footer-section .social-icon svg {
+            width: 16px !important;
+            height: 16px !important;
+          }
+
+          .footer-bottom {
+            padding: 1rem 0 !important;
+          }
+
+          .floating-particle {
+            display: none;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .footer-content {
+            padding: 1rem 0.5rem !important;
+          }
+
+          .footer-section {
+            padding: 1rem !important;
+          }
+
+          .footer-section h4 {
+            font-size: 1rem !important;
+          }
+
+          .footer-section p, .footer-section span {
+            font-size: 0.85rem !important;
+          }
+
+          .footer-bottom p {
+            font-size: 0.8rem !important;
+          }
+
+          .footer-bottom span {
+            font-size: 0.75rem !important;
           }
         }
         

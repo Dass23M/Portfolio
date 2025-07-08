@@ -259,8 +259,8 @@ const About = () => {
               height: '100%',
               objectFit: 'cover',
               filter: isMobile 
-                ? 'brightness(0.2) contrast(1.1) hue-rotate(180deg)' 
-                : 'brightness(0.3) contrast(1.1) hue-rotate(180deg)',
+                ? 'brightness(0.6) contrast(1.1) hue-rotate(180deg)' 
+                : 'brightness(0.6) contrast(1.1) hue-rotate(180deg)',
               transition: 'opacity 0.5s ease',
             }}
           >

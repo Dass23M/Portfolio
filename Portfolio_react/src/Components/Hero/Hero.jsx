@@ -61,7 +61,7 @@ const Hero = () => {
         position: 'relative',
         width: '100%',
         height: '100vh',
-        minHeight: '600px',
+        minHeight: isMobile ? '100vh' : '600px',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
@@ -149,7 +149,7 @@ const Hero = () => {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          padding: isMobile ? '0 1rem' : '0 2rem',
+          padding: isMobile ? '2rem 1rem' : '0 2rem',
           maxWidth: '1000px',
           width: '100%',
           opacity: 0,
@@ -161,10 +161,10 @@ const Hero = () => {
         <h1
           ref={titleRef}
           style={{
-            fontSize: isMobile ? 'clamp(1.8rem, 7vw, 2.8rem)' : 'clamp(2.2rem, 5vw, 4rem)',
+            fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(2.2rem, 5vw, 4rem)',
             fontWeight: 700,
             color: '#ffffff',
-            marginBottom: isMobile ? '0.8rem' : '1.2rem',
+            marginBottom: isMobile ? '0.5rem' : '1.2rem',
             opacity: 0,
             transform: 'translateY(15px)',
             transition: 'opacity 0.6s ease, transform 0.6s ease',
@@ -173,7 +173,7 @@ const Hero = () => {
           role="heading"
           aria-level="1"
         >
-          <span style={{ display: 'block', marginBottom: isMobile ? '0.4rem' : '0.8rem' }}>
+          <span style={{ display: 'block', marginBottom: isMobile ? '0.3rem' : '0.8rem' }}>
             Hello, I'm{' '}
             <span
               style={{
@@ -184,12 +184,12 @@ const Hero = () => {
                 display: 'inline-block',
               }}
             >
-              Dasun Methmal
+              Moneesha Aravindi
             </span>
           </span>
           <span
             style={{
-              fontSize: isMobile ? 'clamp(1rem, 5vw, 1.6rem)' : 'clamp(1.3rem, 3vw, 2rem)',
+              fontSize: isMobile ? 'clamp(0.9rem, 4vw, 1.4rem)' : 'clamp(1.3rem, 3vw, 2rem)',
               fontWeight: 400,
               color: '#e5e7eb',
               display: 'block',
@@ -203,11 +203,11 @@ const Hero = () => {
         <p
           ref={descriptionRef}
           style={{
-            fontSize: isMobile ? 'clamp(0.9rem, 3.5vw, 1rem)' : 'clamp(1rem, 1.8vw, 1.15rem)',
+            fontSize: isMobile ? 'clamp(0.85rem, 3.5vw, 1rem)' : 'clamp(1rem, 1.8vw, 1.15rem)',
             color: '#d1d5db',
-            maxWidth: isMobile ? '100%' : '550px',
-            lineHeight: 1.6,
-            marginBottom: isMobile ? '1.5rem' : '2rem',
+            maxWidth: isMobile ? '95%' : '550px',
+            lineHeight: 1.5,
+            marginBottom: isMobile ? '1.8rem' : '2rem',
             opacity: 0,
             transform: 'translateY(15px)',
             transition: 'opacity 0.6s ease, transform 0.6s ease',
@@ -222,10 +222,11 @@ const Hero = () => {
           style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '0.8rem' : '1.2rem',
+            gap: isMobile ? '0.75rem' : '1.2rem',
             alignItems: 'center',
             justifyContent: 'center',
             width: isMobile ? '100%' : 'auto',
+            maxWidth: isMobile ? '280px' : 'none',
             opacity: 0,
             transform: 'translateY(15px)',
             transition: 'opacity 0.6s ease, transform 0.6s ease',
@@ -234,8 +235,8 @@ const Hero = () => {
           <a
             href="#Contact"
             style={{
-              padding: isMobile ? '0.75rem 1.25rem' : '0.9rem 1.8rem',
-              fontSize: isMobile ? '0.95rem' : '1rem',
+              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 1.8rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               fontWeight: 600,
               color: '#ffffff',
               textDecoration: 'none',
@@ -243,8 +244,9 @@ const Hero = () => {
               borderRadius: '9999px',
               boxShadow: '0 8px 20px rgba(99, 102, 241, 0.2)',
               width: isMobile ? '100%' : 'auto',
-              maxWidth: isMobile ? '250px' : 'none',
+              minWidth: isMobile ? 'auto' : '160px',
               textAlign: 'center',
+              display: 'inline-block',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             }}
             onMouseEnter={(e) => {
@@ -259,7 +261,7 @@ const Hero = () => {
                 e.target.style.boxShadow = '0 8px 20px rgba(99, 102, 241, 0.2)';
               }
             }}
-            aria-label="Connect with Dasun Methmal"
+            aria-label="Connect with Moneesha Aravindi"
           >
             Connect with me
           </a>
@@ -267,8 +269,8 @@ const Hero = () => {
             href="/resume.pdf"
             download
             style={{
-              padding: isMobile ? '0.75rem 1.25rem' : '0.9rem 1.8rem',
-              fontSize: isMobile ? '0.95rem' : '1rem',
+              padding: isMobile ? '0.7rem 1.5rem' : '0.9rem 1.8rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               fontWeight: 600,
               color: '#ffffff',
               textDecoration: 'none',
@@ -276,8 +278,9 @@ const Hero = () => {
               border: '2px solid rgba(255, 255, 255, 0.15)',
               borderRadius: '9999px',
               width: isMobile ? '100%' : 'auto',
-              maxWidth: isMobile ? '250px' : 'none',
+              minWidth: isMobile ? 'auto' : '160px',
               textAlign: 'center',
+              display: 'inline-block',
               transition: 'transform 0.2s ease, background 0.2s ease, border-color 0.2s ease',
             }}
             onMouseEnter={(e) => {
@@ -294,7 +297,7 @@ const Hero = () => {
                 e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)';
               }
             }}
-            aria-label="Download Dasun Methmal's resume"
+            aria-label="Download Moneesha Aravindi's resume"
           >
             Download Resume
           </a>
@@ -345,7 +348,16 @@ const Hero = () => {
             transform: translateY(0) !important;
           }
           @media (max-width: 768px) {
-            a { min-height: 44px; }
+            a { 
+              min-height: 44px;
+              font-size: 0.9rem !important;
+            }
+          }
+          @media (max-width: 480px) {
+            a { 
+              font-size: 0.85rem !important;
+              padding: 0.65rem 1.2rem !important;
+            }
           }
           @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
