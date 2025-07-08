@@ -33,10 +33,10 @@ const Contact = () => {
   const contactDetails = [
     {
       icon: Mail,
-      text: 'dasunmethmal23@gmail.com',
+      text: 'moneesha12@gmail.com',
       label: 'Email Contact',
       color: '#6366f1',
-      href: 'mailto:dasunmethmal23@gmail.com'
+      href: 'mailto:moneesha12@gmail.com'
     },
     {
       icon: MapPin,

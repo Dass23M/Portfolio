@@ -500,7 +500,7 @@ const Footer = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <FaEnvelope size={16} color="#6366f1" />
                 <span style={{ color: '#d1d5db', fontSize: '0.95rem' }}>
-                  dasunmethmal23@gmail.com
+                  moneesha12@gmail.com
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
