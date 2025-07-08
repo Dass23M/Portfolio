@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
-import { gsap } from 'gsap';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
+
 
 const MovingBar = () => {
   const containerRef = useRef(null);
@@ -143,7 +143,7 @@ const MovingBar = () => {
           playsInline
           style={styles.video}
         >
-         <source src={videoMp4} type="video/mp4" />
+         <source src={videoWebM} type="video/webm" />
         </video>
       </div>
       

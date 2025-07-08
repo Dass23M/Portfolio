@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Code, Rocket, User, Target, Award, Zap } from 'lucide-react';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -264,7 +264,7 @@ const About = () => {
               transition: 'opacity 0.5s ease',
             }}
           >
-            <source src={videoMp4} type="video/mp4" />
+            <source src={videoWebM} type="video/webm" />
           </video>
         )}
       </div>

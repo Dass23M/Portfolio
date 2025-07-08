@@ -3,7 +3,7 @@ import "./Footer.css";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -199,7 +199,7 @@ const Footer = () => {
             filter: 'brightness(0.25) contrast(1.2) hue-rotate(240deg)',
           }}
         >
-          <source src={videoMp4} type="video/mp4" />
+          <source src={videoWebM} type="video/webm" />
         </video>
       </div>
 

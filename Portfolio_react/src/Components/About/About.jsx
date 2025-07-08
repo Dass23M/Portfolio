@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaReact, FaNodeJs, FaDatabase, FaGitAlt } from 'react-icons/fa';
 import { SiJavascript, SiHtml5, SiCss3, SiMongodb, SiExpress, SiPython, SiTypescript, SiTailwindcss } from 'react-icons/si';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 const About = () => {
   const containerRef = useRef(null);
@@ -128,7 +128,7 @@ const About = () => {
             filter: 'brightness(0.5) contrast(2.9) hue-rotate(160deg)',
           }}
         >
-          <source src={videoMp4} type="video/mp4" />
+          <source src={videoWebM} type="video/webm" />
         </video>
       </div>
 

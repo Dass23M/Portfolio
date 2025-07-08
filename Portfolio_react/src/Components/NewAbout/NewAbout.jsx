@@ -3,7 +3,7 @@ import './NewAbout.css';
 import { FaCode, FaDatabase, FaServer, FaCogs } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -304,7 +304,7 @@ const NewAbout = () => {
           className="background-video"
           preload="metadata"
         >
-          <source src={videoMp4} type="video/mp4" />
+          <source src={videoWebM} type="video/webm" />
         </video>
       </div>
 

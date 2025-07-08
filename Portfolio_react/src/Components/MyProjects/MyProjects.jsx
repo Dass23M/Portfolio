@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github, Zap, Star, ArrowRight, Code, Globe, Layers } from 'lucide-react';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 const MyProjects = () => {
   const sectionRef = useRef(null);
@@ -258,7 +258,7 @@ const MyProjects = () => {
             filter: 'brightness(0.6) contrast(1.2) hue-rotate(200deg)',
           }}
         >
-          <source src={videoMp4} type="video/mp4" />
+          <source src={videoWebM} type="video/webm" />
         </video>
       </div>
 

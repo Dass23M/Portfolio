@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.WebM'; // Note: Consider compressing this video to <1MB for better performance
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm'; // Note: Consider compressing this video to <1MB for better performance
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -104,7 +104,7 @@ const Hero = () => {
           }}
           aria-hidden="true"
         >
-          <source src={videoMp4} type="video/mp4" />
+          <source src={videoWebM} type="video/webm" />
           <track kind="captions" srcLang="en" label="Background video" />
         </video>
       </div>

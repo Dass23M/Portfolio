@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { Mail, MapPin, Phone, Send, User, MessageSquare } from 'lucide-react';
-import videoMp4 from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.mp4';
+import videoWebM from '../../assets/video/Rainbow_Nebula_4K_Motion_Background.webm';
 
 
 // Register GSAP plugins
@@ -340,7 +340,7 @@ const Contact = () => {
             filter: 'brightness(0.6) contrast(1.1) hue-rotate(180deg) saturate(1.2)',
           }}
         >
-          <source src={videoMp4} type="video/mp4" />
+          <source src={videoWebM} type="video/webm" />
         </video>
       </div>
 
