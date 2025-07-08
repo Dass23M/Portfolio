@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './NewAbout.css';
 import { FaCode, FaDatabase, FaServer, FaCogs } from 'react-icons/fa';
 import { gsap } from 'gsap';
@@ -17,198 +17,257 @@ const NewAbout = () => {
   const paraRef = useRef(null);
   const boxesRef = useRef([]);
   const floatingElementsRef = useRef([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Check if mobile on mount and resize
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-    const isTablet = window.innerWidth <= 1024;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-    // Initialize main timeline
-    const mainTimeline = gsap.timeline({ paused: true });
-
-    // Video background setup
+  // Video loading handler
+  useEffect(() => {
     if (videoRef.current) {
-      gsap.set(videoRef.current, {
-        scale: 1.1,
-        filter: 'brightness(0.3) contrast(1.1) hue-rotate(180deg)',
-      });
-    }
-
-    // Floating elements animation
-    floatingElementsRef.current.forEach((element, index) => {
-      if (element) {
-        gsap.to(element, {
-          y: -20,
-          x: 10,
-          rotation: 360,
-          duration: 3 + index * 0.5,
-          ease: 'power2.inOut',
-          repeat: -1,
-          yoyo: true,
-          delay: index * 0.4
-        });
-      }
-    });
-
-    // Main content animations with professional timing
-    mainTimeline
-      .fromTo(
-        contentRef.current,
-        { 
-          opacity: 0, 
-          y: 50,
-          scale: 0.95,
-          rotationX: 10
-        },
-        { 
-          opacity: 1, 
-          y: 0,
-          scale: 1,
-          rotationX: 0,
-          duration: isMobile ? 0.8 : 1.2, 
-          ease: 'power3.out' 
-        }
-      )
-      .fromTo(
-        titleRef.current,
-        { 
-          opacity: 0, 
-          y: 40,
-          scale: 0.9
-        },
-        { 
-          opacity: 1, 
-          y: 0,
-          scale: 1,
-          duration: isMobile ? 0.7 : 1, 
-          ease: 'power3.out' 
-        }, 
-        '-=0.8'
-      )
-      .fromTo(
-        paraRef.current,
-        { 
-          opacity: 0, 
-          y: 30,
-          x: -20
-        },
-        { 
-          opacity: 1, 
-          y: 0,
-          x: 0,
-          duration: isMobile ? 0.7 : 1, 
-          ease: 'power3.out' 
-        }, 
-        '-=0.6'
-      );
-
-    // Skill boxes staggered animation
-    boxesRef.current.forEach((box, index) => {
-      if (box) {
-        mainTimeline.fromTo(
-          box,
-          { 
-            opacity: 0, 
-            y: 60,
-            scale: 0.8,
-            rotationY: 20
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotationY: 0,
-            duration: isMobile ? 0.6 : 0.8,
-            ease: 'power2.out',
-          },
-          `-=${0.6 - index * 0.15}`
-        );
-      }
-    });
-
-    // ScrollTrigger for main animation
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: isMobile ? 'top 80%' : 'top 70%',
-      onEnter: () => {
-        mainTimeline.play();
-      },
-      once: true
-    });
-
-    // Advanced interactions for desktop
-    if (!isMobile) {
-      // Mouse parallax effect
-      const handleMouseMove = (e) => {
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-
-        // Parallax for skill boxes
-        boxesRef.current.forEach((box, index) => {
-          if (box) {
-            const factor = (index + 1) * 0.02;
-            const x = (mouseX - centerX) * factor;
-            const y = (mouseY - centerY) * factor;
-            
-            gsap.to(box, {
-              x,
-              y,
-              duration: 0.8,
-              ease: 'power2.out',
-            });
-          }
-        });
-
-        // Parallax for floating elements
-        floatingElementsRef.current.forEach((element, index) => {
-          if (element) {
-            const factor = (index + 1) * 0.015;
-            const x = (mouseX - centerX) * factor;
-            const y = (mouseY - centerY) * factor;
-            
-            gsap.to(element, {
-              x,
-              y,
-              duration: 1.2,
-              ease: 'power2.out',
-            });
-          }
-        });
+      const video = videoRef.current;
+      
+      const handleVideoLoad = () => {
+        setIsLoaded(true);
       };
 
-      // Video parallax on scroll
-      const handleScroll = () => {
-        const scrolled = window.pageYOffset;
-        const sectionTop = sectionRef.current?.offsetTop || 0;
-        const sectionHeight = sectionRef.current?.offsetHeight || 0;
-        const windowHeight = window.innerHeight;
-        
-        if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
-          const parallaxValue = (scrolled - sectionTop) * 0.3;
-          
-          if (videoRef.current) {
-            gsap.to(videoRef.current, {
-              y: parallaxValue,
-              duration: 0.5,
-              ease: 'power2.out'
-            });
-          }
-        }
-      };
-
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('scroll', handleScroll);
+      if (video.readyState >= 3) {
+        handleVideoLoad();
+      } else {
+        video.addEventListener('loadeddata', handleVideoLoad);
+        video.addEventListener('canplaythrough', handleVideoLoad);
+      }
 
       return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('scroll', handleScroll);
+        video.removeEventListener('loadeddata', handleVideoLoad);
+        video.removeEventListener('canplaythrough', handleVideoLoad);
       };
     }
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    const isTablet = window.innerWidth <= 1024;
+    let mainTimeline;
+    let mouseMoveHandler;
+    let scrollHandler;
+
+    // Use requestAnimationFrame for smoother initialization
+    const initAnimations = () => {
+      // Initialize main timeline
+      mainTimeline = gsap.timeline({ paused: true });
+
+      // Video background setup with smoother transition
+      if (videoRef.current) {
+        gsap.set(videoRef.current, {
+          scale: 1.1,
+          filter: 'brightness(0.3) contrast(1.1) hue-rotate(180deg)',
+          opacity: 0
+        });
+        
+        gsap.to(videoRef.current, {
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      }
+
+      // Floating elements with optimized performance
+      if (!isMobile) {
+        floatingElementsRef.current.forEach((element, index) => {
+          if (element) {
+            gsap.set(element, { force3D: true }); // Hardware acceleration
+            gsap.to(element, {
+              y: -20,
+              x: 10,
+              rotation: 360,
+              duration: 3 + index * 0.5,
+              ease: 'power2.inOut',
+              repeat: -1,
+              yoyo: true,
+              delay: index * 0.4
+            });
+          }
+        });
+      }
+
+      // Enhanced main content animations
+      mainTimeline
+        .set([contentRef.current, titleRef.current, paraRef.current, ...boxesRef.current], {
+          force3D: true // Hardware acceleration for all elements
+        })
+        .fromTo(
+          contentRef.current,
+          { 
+            opacity: 0, 
+            y: isMobile ? 30 : 50,
+            scale: 0.98
+          },
+          { 
+            opacity: 1, 
+            y: 0,
+            scale: 1,
+            duration: isMobile ? 0.6 : 1,
+            ease: 'power2.out' 
+          }
+        )
+        .fromTo(
+          titleRef.current,
+          { 
+            opacity: 0, 
+            y: isMobile ? 25 : 40,
+            scale: 0.95
+          },
+          { 
+            opacity: 1, 
+            y: 0,
+            scale: 1,
+            duration: isMobile ? 0.5 : 0.8,
+            ease: 'power2.out' 
+          }, 
+          '-=0.6'
+        )
+        .fromTo(
+          paraRef.current,
+          { 
+            opacity: 0, 
+            y: isMobile ? 20 : 30,
+            x: isMobile ? 0 : -20
+          },
+          { 
+            opacity: 1, 
+            y: 0,
+            x: 0,
+            duration: isMobile ? 0.5 : 0.8,
+            ease: 'power2.out' 
+          }, 
+          '-=0.4'
+        );
+
+      // Skill boxes with smoother stagger
+      boxesRef.current.forEach((box, index) => {
+        if (box) {
+          gsap.set(box, { force3D: true }); // Hardware acceleration
+          mainTimeline.fromTo(
+            box,
+            { 
+              opacity: 0, 
+              y: isMobile ? 40 : 60,
+              scale: 0.9
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: isMobile ? 0.4 : 0.6,
+              ease: 'power2.out',
+            },
+            `-=${0.4 - index * 0.1}`
+          );
+        }
+      });
+
+      // ScrollTrigger with optimized settings
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: isMobile ? 'top 85%' : 'top 75%',
+        onEnter: () => {
+          mainTimeline.play();
+        },
+        once: true,
+        refreshPriority: 1
+      });
+
+      // Desktop-only advanced interactions
+      if (!isMobile && !isTablet) {
+        // Throttled mouse parallax for better performance
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+        let rafId;
+
+        const updateParallax = () => {
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          
+          targetX = (mouseX - centerX) * 0.02;
+          targetY = (mouseY - centerY) * 0.02;
+
+          // Smooth lerp for parallax
+          boxesRef.current.forEach((box, index) => {
+            if (box) {
+              const factor = (index + 1) * 0.5;
+              gsap.to(box, {
+                x: targetX * factor,
+                y: targetY * factor,
+                duration: 0.6,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+            }
+          });
+
+          rafId = requestAnimationFrame(updateParallax);
+        };
+
+        mouseMoveHandler = (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        };
+
+        // Optimized scroll handler
+        scrollHandler = () => {
+          if (!sectionRef.current) return;
+          
+          const scrolled = window.pageYOffset;
+          const sectionTop = sectionRef.current.offsetTop;
+          const sectionHeight = sectionRef.current.offsetHeight;
+          const windowHeight = window.innerHeight;
+          
+          if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+            const parallaxValue = (scrolled - sectionTop) * 0.2;
+            
+            if (videoRef.current) {
+              gsap.to(videoRef.current, {
+                y: parallaxValue,
+                duration: 0.3,
+                ease: 'none',
+                overwrite: 'auto'
+              });
+            }
+          }
+        };
+
+        window.addEventListener('mousemove', mouseMoveHandler, { passive: true });
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        updateParallax();
+
+        return () => {
+          window.removeEventListener('mousemove', mouseMoveHandler);
+          window.removeEventListener('scroll', scrollHandler);
+          if (rafId) cancelAnimationFrame(rafId);
+        };
+      }
+    };
+
+    // Use requestAnimationFrame for smoother initialization
+    const rafId = requestAnimationFrame(initAnimations);
 
     // Cleanup
     return () => {
+      cancelAnimationFrame(rafId);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      if (mainTimeline) mainTimeline.kill();
       gsap.killTweensOf([
         videoRef.current,
         contentRef.current,
@@ -218,7 +277,7 @@ const NewAbout = () => {
         ...floatingElementsRef.current
       ]);
     };
-  }, []);
+  }, [isLoaded, isMobile]);
 
   return (
     <div 
@@ -227,6 +286,13 @@ const NewAbout = () => {
       ref={sectionRef} 
       aria-label="What I Do Section"
     >
+      {/* Loading overlay */}
+      {!isLoaded && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
+
       {/* Video Background */}
       <div className="video-background">
         <video
@@ -236,6 +302,7 @@ const NewAbout = () => {
           muted
           playsInline
           className="background-video"
+          preload="metadata"
         >
           <source src={videoMp4} type="video/mp4" />
         </video>
@@ -336,6 +403,33 @@ const NewAbout = () => {
           padding: 5rem 0;
         }
 
+        .loading-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #000000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+        }
+
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 3px solid rgba(99, 102, 241, 0.3);
+          border-top: 3px solid #6366f1;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
         .video-background {
           position: absolute;
           top: -10%;
@@ -343,6 +437,7 @@ const NewAbout = () => {
           width: 120%;
           height: 120%;
           z-index: 1;
+          will-change: transform;
         }
 
         .background-video {
@@ -350,6 +445,7 @@ const NewAbout = () => {
           height: 100%;
           object-fit: cover;
           filter: brightness(0.3) contrast(1.1) hue-rotate(180deg);
+          will-change: transform;
         }
 
         .gradient-overlay {
@@ -399,6 +495,7 @@ const NewAbout = () => {
           border-radius: 50%;
           background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
           filter: blur(1px);
+          will-change: transform;
         }
 
         .circle-1 {
@@ -443,12 +540,14 @@ const NewAbout = () => {
           width: 100%;
           padding: 0 2rem;
           opacity: 0;
+          will-change: transform;
         }
 
         .title-container1 {
           text-align: center;
           margin-bottom: 3rem;
           opacity: 0;
+          will-change: transform;
         }
 
         .section-title {
@@ -472,6 +571,7 @@ const NewAbout = () => {
           text-align: center;
           margin-bottom: 4rem;
           opacity: 0;
+          will-change: transform;
         }
 
         .about-para1 p {
@@ -492,7 +592,7 @@ const NewAbout = () => {
 
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 2rem;
           max-width: 1000px;
           margin: 0 auto;
@@ -511,6 +611,7 @@ const NewAbout = () => {
           opacity: 0;
           position: relative;
           overflow: hidden;
+          will-change: transform;
         }
 
         .section-box:hover {
@@ -569,6 +670,10 @@ const NewAbout = () => {
         }
 
         @media (max-width: 768px) {
+          .new-about-container {
+            padding: 3rem 0;
+          }
+
           .skills-grid {
             grid-template-columns: 1fr;
             gap: 1.5rem;
@@ -576,6 +681,41 @@ const NewAbout = () => {
           
           .section-box {
             padding: 1.5rem;
+          }
+
+          .content-container {
+            padding: 0 1.5rem;
+          }
+
+          .icon-container {
+            width: 70px;
+            height: 70px;
+          }
+
+          .icon {
+            font-size: 1.8rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .new-about-container {
+            padding: 2rem 0;
+          }
+
+          .content-container {
+            padding: 0 1rem;
+          }
+
+          .section-box {
+            padding: 1.25rem;
+          }
+
+          .title-container1 {
+            margin-bottom: 2rem;
+          }
+
+          .about-para1 {
+            margin-bottom: 3rem;
           }
         }
 
